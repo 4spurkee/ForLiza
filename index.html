@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonk Cat</title>
+
+<style>
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+#cat {
+    width: 300px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform-origin: bottom center;
+    transition: transform 0.08s ease-out;
+}
+
+#cat.bonk {
+    transform: scaleY(0.85);
+}
+</style>
+</head>
+<body>
+
+<img id="cat" src="cat.png" alt="Cat">
+
+<audio id="meow" src="meow.mp3" preload="auto"></audio>
+
+<script>
+const cat = document.getElementById("cat");
+const meow = document.getElementById("meow");
+
+cat.addEventListener("click", () => {
+    meow.pause();
+    meow.currentTime = 0;
+    meow.play();
+
+    cat.classList.remove("bonk");
+    void cat.offsetWidth;
+    cat.classList.add("bonk");
+
+    setTimeout(() => {
+        cat.classList.remove("bonk");
+    }, 80);
+});
+</script>
+
+</body>
+</html>
